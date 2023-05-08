@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import { AppLoading } from "expo";
 import React, { useState } from 'react';
 import LoginScreen from './Screens/LoginScreen/LoginScreen';
-import { RegistrationScreen } from './Screens/RegistrationScreen/RegistrationScreen';
+import  RegistrationScreen  from './Screens/RegistrationScreen/RegistrationScreen';
 import PostsScreen from './Screens/PostsScreen/PostsScreen';
 
 
@@ -21,10 +21,10 @@ export default function App() {
 
 return (
   <View style={styles.container}>
-       {/* <RegistrationScreen /> */}
+       <RegistrationScreen />
        
     {/* <LoginScreen /> */}
-    <PostsScreen />
+    {/* <PostsScreen /> */}
   </View>
 );
 }

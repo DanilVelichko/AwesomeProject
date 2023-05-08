@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import AddButton from "../../components/Buttons/AddButton/AddButton";
 
-export function RegistrationScreen() {
+export default function RegistrationScreen() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
