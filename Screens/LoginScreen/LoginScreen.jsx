@@ -6,10 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
-  Image,
   KeyboardAvoidingView,
 } from "react-native";
-import SvgComponent from "../../components/AddButton/AddButton";
 
 export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,13 +19,14 @@ export default function LoginScreen() {
         style={styles.backgroundImage}
       >
         <View style={styles.formContainer}>
+        
           <Text style={styles.title}>Увійти</Text>
 
           <TextInput
             style={styles.input}
             placeholder="Адреса електронної пошти"
           />
-          
+
           <View style={styles.passwordContainer}>
             <TextInput
               style={[styles.input, styles.passwordInput]}
@@ -43,14 +42,15 @@ export default function LoginScreen() {
               </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.registerButton}>
-            <Text style={styles.registerButtonText}>Увійти</Text>
+          <TouchableOpacity style={styles.loginButton}>
+            <Text style={styles.loginButtonText}>Увійти</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.loginLink}>
-            <Text style={styles.loginLinkText}>
+          <TouchableOpacity style={styles.registerLink}>
+            <Text style={styles.registerLinkText}>
               Немає акаунта? Зареєструватись
             </Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
+      
         </View>
       </ImageBackground>
     </View>
@@ -69,16 +69,17 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
-    resizeMode: "cover",
+    resizeMode: "stretch",
     justifyContent: "flex-end",
+    textAlign: "center",
   },
   formContainer: {
     position: "relative",
     width: "100%",
-    maxHeight: "60%",
+    maxHeight: 489,
     height: "100%",
 
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
     paddingLeft: 16,
@@ -86,32 +87,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
-  avatarContainer: {
-    position: "absolute",
-    top: -60,
-    left: 0,
-    right: 0,
-    justifyContent: "center",
-    alignItems: "center",
-   
-  },
-  avatar: {
-    width: 132,
-    height: 120,
-    marginBottom: 32,
-  },
-  addButtonSVG: {
-    position: "absolute",
-    bottom: 50,
-    right: -77,
-    width: 25,
-    height: 25,
-    borderRadius: 50,
-  },
   title: {
     fontSize: 30,
     fontFamily: "Roboto-Medium",
     color: "#212121",
+    marginTop: 32,
     marginBottom: 32,
   },
   input: {
@@ -119,7 +99,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingTop: 16,
     paddingBottom: 15,
-    marginBottom: 10,
+    marginBottom: 16,
     width: "100%",
     color: "#F6F6F6",
     borderRadius: 8,
@@ -140,7 +120,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 16,
     top: 18,
-
     backgroundColor: "#fff",
     borderRadius: 10,
   },
@@ -149,7 +128,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#1B4371",
   },
-  registerButton: {
+  loginButton: {
     backgroundColor: "#FF6C00",
     borderRadius: 10,
     padding: 10,
@@ -157,15 +136,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
   },
-  registerButtonText: {
+  loginButtonText: {
     color: "#fff",
     fontFamily: "Roboto-Regular",
     fontSize: 16,
   },
-  loginLink: {
+  registerLink: {
     marginTop: 16,
   },
-  loginLinkText: {
+  registerLinkText: {
     color: "#1B4371",
     fontFamily: "Roboto-Regular",
     fontSize: 16,

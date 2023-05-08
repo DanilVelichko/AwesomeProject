@@ -9,7 +9,7 @@ import {
   Image,
   KeyboardAvoidingView,
 } from "react-native";
-import SvgComponent from "../../components/AddButton/AddButton";
+import AddButton from "../../components/Buttons/AddButton/AddButton";
 
 export function RegistrationScreen() {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +28,7 @@ export function RegistrationScreen() {
             />
 
             <TouchableOpacity>
-              <SvgComponent style={[styles.addButtonSVG]} />
+              <AddButton style={[styles.addButtonSVG]} />
             </TouchableOpacity>
           </View>
 
@@ -73,20 +73,19 @@ export function RegistrationScreen() {
 const styles = StyleSheet.create({
   container: {
     height: "100%",
+    width: "100%",
     position: "relative",
   },
   backgroundImage: {
     flex: 1,
     position: "absolute",
-    
+
     width: "100%",
     height: "100%",
     resizeMode: "cover",
     justifyContent: "flex-end",
-
   },
   formContainer: {
-
     position: "relative",
     flex: 1,
     width: "100%",
@@ -122,12 +121,7 @@ const styles = StyleSheet.create({
     right: -77,
     width: 25,
     height: 25,
-    // fill: "#fff",
-    // justifyContent: "center",
-    // alignItems: "center",
-
-    // backgroundColor: "#FF6C00",
-    borderRadius: 50,
+     borderRadius: 50,
   },
   title: {
     fontSize: 30,
@@ -162,11 +156,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 16,
     top: 18,
-
     backgroundColor: "#fff",
     borderRadius: 10,
-    // padding: 5,
-    // marginLeft: 10,
   },
   showPasswordText: {
     fontFamily: "Roboto-Regular",
