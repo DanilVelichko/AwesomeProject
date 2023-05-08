@@ -8,13 +8,46 @@ import {
   ImageBackground,
   Image,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import AddButton from "../../components/Buttons/AddButton/AddButton";
 
 export default function RegistrationScreen() {
   const [showPassword, setShowPassword] = useState(false);
 
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const handleRegistration = () => {
+    console.log("Registration button clicked");
+
+    if (username === "") {
+      setUsernameError("Введіть логін");
+      console.log(usernameError);
+    }
+    if (email === "") {
+      setEmailError("Введіть email");
+      console.log(emailError);
+    }
+    if (password === "") {
+      setPasswordError("Введіть пароль");
+      console.log(passwordError);
+    }
+
+    if (username !== "" && email !== "" && password !== "") {
+      console.log("Login:", username, "Email:", email, "Password", password);
+      console.log("Registration successful");
+    }
+  };
+
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <View style={styles.container}>
       <ImageBackground
         source={require("../../assets/background.png")}
@@ -33,10 +66,18 @@ export default function RegistrationScreen() {
           </View>
 
           <Text style={styles.title}>Реєстрація</Text>
-          <TextInput style={styles.input} placeholder="Логін" />
+          <TextInput
+            style={styles.input}
+            placeholder="Логін"
+            value={username}
+            onChangeText={(text) => setUsername(text)}
+          />
+
           <TextInput
             style={styles.input}
             placeholder="Адреса електронної пошти"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           {/* <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -45,6 +86,8 @@ export default function RegistrationScreen() {
             <TextInput
               style={[styles.input, styles.passwordInput]}
               placeholder="Пароль"
+              value={password}
+              onChangeText={(text) => setPassword(text)}
               secureTextEntry={!showPassword}
             />
             <TouchableOpacity
@@ -58,15 +101,19 @@ export default function RegistrationScreen() {
           </View>
           {/* </KeyboardAvoidingView> */}
 
-          <TouchableOpacity style={styles.registerButton}>
+          <TouchableOpacity
+            style={styles.registerButton}
+            onPress={handleRegistration}
+          >
             <Text style={styles.registerButtonText}>Зареєструватись</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.loginLink}>
-            <Text style={styles.loginLinkText}>Вже є аккаунт? Увійти</Text>
+            <Text style={styles.loginLinkText}>Вже є акаунт? Увійти</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -121,7 +168,7 @@ const styles = StyleSheet.create({
     right: -77,
     width: 25,
     height: 25,
-     borderRadius: 50,
+    borderRadius: 50,
   },
   title: {
     fontSize: 30,
@@ -137,7 +184,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     marginBottom: 10,
     width: "100%",
-    color: "#F6F6F6",
+    color: "#1d1b1b",
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#E8E8E8",

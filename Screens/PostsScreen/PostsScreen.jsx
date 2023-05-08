@@ -4,6 +4,7 @@ import LogOutButton from "../../components/Buttons/LogOutButton/LogOutButton";
 import MenuButton from "../../components/Buttons/MenuButton/MenuButton";
 import UserButton from "../../components/Buttons/UserButton/UserButton";
 import AddPostButton from "../../components/Buttons/AddPostButton/AddPostButton";
+import PostsFeed from "../../components/PostsFeed/PostsFeed";
 
 function PostsScreen() {
   return (
@@ -28,9 +29,9 @@ function PostsScreen() {
           </View>
         </View>
 
-        <View style={styles.postsWrapper}>
-          
-        </View>
+        {/* <View style={styles.postsWrapper}> */}
+          <PostsFeed />
+        {/* </View> */}
       </View>
 
       <View style={styles.navigationWrapper}>
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
   contentWrapper: {
     width: "100%",
     height: 641,
+    gap: 32,
   },
   avatarContainer: {
     gap: 8,
@@ -120,7 +122,6 @@ const styles = StyleSheet.create({
   postsWrapper: {
     width: "100%",
     height: "100%",
-
   },
 
   navigationWrapper: {
@@ -128,21 +129,15 @@ const styles = StyleSheet.create({
     height: 83,
     // alignItems: "center",
     // justifyContent: "center",
-   paddingTop: 8,
-    
+    paddingTop: 8,
+
     borderTopWidth: 1,
     borderTopColor: "#c9bdbd",
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 85,
   },
-  homeButton: {
-
-  },
-  addPostButton: {
- 
-  },
-  profileButton: {
-
-  },
+  homeButton: {},
+  addPostButton: {},
+  profileButton: {},
 });

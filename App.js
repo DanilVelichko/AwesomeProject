@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import LoginScreen from './Screens/LoginScreen/LoginScreen';
 import  RegistrationScreen  from './Screens/RegistrationScreen/RegistrationScreen';
 import PostsScreen from './Screens/PostsScreen/PostsScreen';
+import CreatePostsScreen from './Screens/CreatePostsScreen/CreatePostsScreen';
 
 
 export default function App() {
@@ -21,9 +22,11 @@ export default function App() {
 
 return (
   <View style={styles.container}>
-       <RegistrationScreen />
+       {/* <RegistrationScreen /> */}
        
     {/* <LoginScreen /> */}
+
+    <CreatePostsScreen />
     {/* <PostsScreen /> */}
   </View>
 );

@@ -7,53 +7,85 @@ import {
   TouchableOpacity,
   ImageBackground,
   KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const handleLogin = () => {
+    console.log("Login button clicked");
+
+    if (email === "") {
+      setEmailError("Введіть email");
+      console.log(emailError);
+    }
+    if (password === "") {
+      setPasswordError("Введіть пароль");
+      console.log(passwordError);
+    }
+
+    if (email !== "" && password !== "") {
+      console.log(`Email: ${email}`);
+      console.log(`Password: ${password}`);
+      console.log("Login successful");
+    }
+  };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/background.png")}
-        style={styles.backgroundImage}
-      >
-        <View style={styles.formContainer}>
-        
-          <Text style={styles.title}>Увійти</Text>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("../../assets/background.png")}
+          style={styles.backgroundImage}
+        >
+          <View style={styles.formContainer}>
+            <Text style={styles.title}>Увійти</Text>
 
-          <TextInput
-            style={styles.input}
-            placeholder="Адреса електронної пошти"
-          />
-
-          <View style={styles.passwordContainer}>
             <TextInput
-              style={[styles.input, styles.passwordInput]}
-              placeholder="Пароль"
-              secureTextEntry={!showPassword}
+              style={styles.input}
+              placeholder="Адреса електронної пошти"
+              value={email}
+              onChangeText={setEmail}
             />
-            <TouchableOpacity
-              onPress={() => setShowPassword(!showPassword)}
-              style={styles.showPasswordButton}
-            >
-              <Text style={styles.showPasswordText}>
-                {showPassword ? "Сховати" : "Показати"}
+
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={[styles.input, styles.passwordInput]}
+                placeholder="Пароль"
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={setPassword}
+              />
+              <TouchableOpacity
+                onPress={() => setShowPassword(!showPassword)}
+                style={styles.showPasswordButton}
+              >
+                <Text style={styles.showPasswordText}>
+                  {showPassword ? "Сховати" : "Показати"}
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+              <Text style={styles.loginButtonText}>Увійти</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.registerLink}>
+              <Text style={styles.registerLinkText}>
+                Немає акаунта? Зареєструватись
               </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.loginButton}>
-            <Text style={styles.loginButtonText}>Увійти</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.registerLink}>
-            <Text style={styles.registerLinkText}>
-              Немає акаунта? Зареєструватись
-            </Text>
-            </TouchableOpacity>
-      
-        </View>
-      </ImageBackground>
-    </View>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -101,7 +133,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     marginBottom: 16,
     width: "100%",
-    color: "#F6F6F6",
+    color: "#494444",
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#E8E8E8",
