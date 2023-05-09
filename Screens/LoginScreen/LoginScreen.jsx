@@ -10,6 +10,8 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
+import BackgroundImage from "../../components/Images/Background/Background";
+
 
 export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
@@ -41,10 +43,7 @@ export default function LoginScreen() {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <ImageBackground
-          source={require("../../assets/background.png")}
-          style={styles.backgroundImage}
-        >
+        <BackgroundImage >
           <View style={styles.formContainer}>
             <Text style={styles.title}>Увійти</Text>
 
@@ -82,8 +81,9 @@ export default function LoginScreen() {
                 Немає акаунта? Зареєструватись
               </Text>
             </TouchableOpacity>
+
           </View>
-        </ImageBackground>
+        </BackgroundImage>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -95,16 +95,9 @@ const styles = StyleSheet.create({
     height: "100%",
     flex: 1,
     position: "relative",
+   
   },
-  backgroundImage: {
-    flex: 1,
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    resizeMode: "stretch",
-    justifyContent: "flex-end",
-    textAlign: "center",
-  },
+
   formContainer: {
     position: "relative",
     width: "100%",
@@ -118,6 +111,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    
   },
   title: {
     fontSize: 30,

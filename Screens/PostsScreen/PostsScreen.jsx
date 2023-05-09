@@ -6,7 +6,14 @@ import UserButton from "../../components/Buttons/UserButton/UserButton";
 import AddPostButton from "../../components/Buttons/AddPostButton/AddPostButton";
 import PostsFeed from "../../components/PostsFeed/PostsFeed";
 
+const userData = {
+  name: "Natali Romanova",
+  email: "example@example.com",
+  avatar: require("../../assets/avatarExample.png"),
+};
+
 function PostsScreen() {
+  const { name, email, avatar } = userData;
   return (
     <View style={styles.container}>
       <View style={styles.headerWrapper}>
@@ -18,20 +25,14 @@ function PostsScreen() {
 
       <View style={styles.contentWrapper}>
         <View style={styles.avatarContainer}>
-          <Image
-            source={require("../../assets/avatarExample.png")}
-            style={styles.avatar}
-          />
+          <Image source={avatar} style={styles.avatar} />
 
           <View style={styles.nameDataWrapper}>
-            <Text style={styles.nameText}>Natali Romanova</Text>
-            <Text style={styles.emailText}>email@example.com</Text>
+            <Text style={styles.nameText}>{name}</Text>
+            <Text style={styles.emailText}>{email}</Text>
           </View>
         </View>
-
-        {/* <View style={styles.postsWrapper}> */}
-          <PostsFeed />
-        {/* </View> */}
+        <PostsFeed /> //**Компонент - Рендер постів */
       </View>
 
       <View style={styles.navigationWrapper}>

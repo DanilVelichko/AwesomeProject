@@ -79,9 +79,9 @@ export default function RegistrationScreen() {
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
-          {/* <KeyboardAvoidingView
+          <KeyboardAvoidingView style={styles.keyboardAvoidingView}
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-          > */}
+          >
           <View style={styles.passwordContainer}>
             <TextInput
               style={[styles.input, styles.passwordInput]}
@@ -99,7 +99,7 @@ export default function RegistrationScreen() {
               </Text>
             </TouchableOpacity>
           </View>
-          {/* </KeyboardAvoidingView> */}
+          </KeyboardAvoidingView>
 
           <TouchableOpacity
             style={styles.registerButton}
@@ -175,6 +175,9 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Medium",
     color: "#212121",
     marginBottom: 32,
+  },
+  keyboardAvoidingView: {
+    width: "100%",
   },
   input: {
     backgroundColor: "#fff",

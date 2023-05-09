@@ -10,7 +10,6 @@ import CreatePostsScreen from './Screens/CreatePostsScreen/CreatePostsScreen';
 
 
 export default function App() {
-  // const [courses, setCourses] = useState(COURSES);
     const [fontsLoaded] = useFonts({
       "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
       "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
@@ -22,11 +21,11 @@ export default function App() {
 
 return (
   <View style={styles.container}>
-       {/* <RegistrationScreen /> */}
+       <RegistrationScreen />
        
     {/* <LoginScreen /> */}
 
-    <CreatePostsScreen />
+    {/* <CreatePostsScreen /> */}
     {/* <PostsScreen /> */}
   </View>
 );
@@ -37,8 +36,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#ecf0f1",
+    backgroundColor: "#E5E5E5",
     marginTop: 30,
+   
   },
-
 });
