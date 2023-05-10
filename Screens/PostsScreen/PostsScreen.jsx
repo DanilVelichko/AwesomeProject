@@ -32,7 +32,7 @@ function PostsScreen() {
             <Text style={styles.emailText}>{email}</Text>
           </View>
         </View>
-        <PostsFeed /> //**Компонент - Рендер постів */
+        <PostsFeed /> 
       </View>
 
       <View style={styles.navigationWrapper}>

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
-    resizeMode: "stretch",
+    resizeMode: "cover",
     justifyContent: "flex-end",
     top: 0,
     left: 0,

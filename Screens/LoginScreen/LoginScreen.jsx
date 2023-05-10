@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -14,6 +14,7 @@ import BackgroundImage from "../../components/Images/Background/Background";
 
 
 export default function LoginScreen() {
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,12 +40,25 @@ export default function LoginScreen() {
       console.log("Login successful");
     }
   };
+useEffect(() => {
+  Keyboard.addListener("keyboardDidShow", () => {
+    setKeyboardOpen(true);
+  });
+  Keyboard.addListener("keyboardDidHide", () => {
+    setKeyboardOpen(false);
+  });
 
+  // cleanup function
+  return () => {
+    Keyboard.removeAllListeners("keyboardDidShow");
+    Keyboard.removeAllListeners("keyboardDidHide");
+  };
+}, []);
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <BackgroundImage >
-          <View style={styles.formContainer}>
+        <BackgroundImage>
+          <View style={{ ...styles.formContainer, maxHeight: keyboardOpen ? 248 : 489 }}>
             <Text style={styles.title}>Увійти</Text>
 
             <TextInput
@@ -71,17 +85,22 @@ export default function LoginScreen() {
                 </Text>
               </TouchableOpacity>
             </View>
+            {!keyboardOpen && (
+              <>
+                <TouchableOpacity
+                  style={styles.loginButton}
+                  onPress={handleLogin}
+                >
+                  <Text style={styles.loginButtonText}>Увійти</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-              <Text style={styles.loginButtonText}>Увійти</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.registerLink}>
-              <Text style={styles.registerLinkText}>
-                Немає акаунта? Зареєструватись
-              </Text>
-            </TouchableOpacity>
-
+                <TouchableOpacity style={styles.registerLink}>
+                  <Text style={styles.registerLinkText}>
+                    Немає акаунта? Зареєструватись
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
           </View>
         </BackgroundImage>
       </View>
@@ -101,7 +120,7 @@ const styles = StyleSheet.create({
   formContainer: {
     position: "relative",
     width: "100%",
-    maxHeight: 489,
+    
     height: "100%",
 
     justifyContent: "flex-start",

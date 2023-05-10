@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -13,7 +13,10 @@ import {
 } from "react-native";
 import AddButton from "../../components/Buttons/AddButton/AddButton";
 
+
 export default function RegistrationScreen() {
+  
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const [username, setUsername] = useState("");
@@ -45,73 +48,91 @@ export default function RegistrationScreen() {
       console.log("Registration successful");
     }
   };
+  useEffect(() => {
+    Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardOpen(true);
+    });
+    Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardOpen(false);
+    });
+
+    // cleanup function
+    return () => {
+      Keyboard.removeAllListeners("keyboardDidShow");
+      Keyboard.removeAllListeners("keyboardDidHide");
+    };
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/background.png")}
-        style={styles.backgroundImage}
-      >
-        <View style={styles.formContainer}>
-          <View style={styles.avatarContainer}>
-            <Image
-              source={require("../../assets/avatar.png")}
-              style={styles.avatar}
-            />
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("../../assets/background.png")}
+          style={styles.backgroundImage}
+        >
+          <View style={{...styles.formContainer, maxHeight: keyboardOpen ? 374 : 549}}>
+            <View style={styles.avatarContainer}>
+              <Image
+                source={require("../../assets/avatar.png")}
+                style={styles.avatar}
+              />
 
-            <TouchableOpacity>
-              <AddButton style={[styles.addButtonSVG]} />
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity>
+                <AddButton style={[styles.addButtonSVG]} />
+              </TouchableOpacity>
+            </View>
 
-          <Text style={styles.title}>Реєстрація</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Логін"
-            value={username}
-            onChangeText={(text) => setUsername(text)}
-          />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Адреса електронної пошти"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-          />
-          <KeyboardAvoidingView style={styles.keyboardAvoidingView}
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-          >
-          <View style={styles.passwordContainer}>
+            <Text style={styles.title}>Реєстрація</Text>
             <TextInput
-              style={[styles.input, styles.passwordInput]}
-              placeholder="Пароль"
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry={!showPassword}
+              style={styles.input}
+              placeholder="Логін"
+              value={username}
+              onChangeText={(text) => setUsername(text)}
             />
-            <TouchableOpacity
-              onPress={() => setShowPassword(!showPassword)}
-              style={styles.showPasswordButton}
-            >
-              <Text style={styles.showPasswordText}>
-                {showPassword ? "Сховати" : "Показати"}
-              </Text>
-            </TouchableOpacity>
-          </View>
-          </KeyboardAvoidingView>
 
-          <TouchableOpacity
-            style={styles.registerButton}
-            onPress={handleRegistration}
-          >
-            <Text style={styles.registerButtonText}>Зареєструватись</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.loginLink}>
-            <Text style={styles.loginLinkText}>Вже є акаунт? Увійти</Text>
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
+            <TextInput
+              style={styles.input}
+              placeholder="Адреса електронної пошти"
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+            <KeyboardAvoidingView
+              style={styles.keyboardAvoidingView}
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
+              <View style={styles.passwordContainer}>
+                <TextInput
+                  style={[styles.input, styles.passwordInput]}
+                  placeholder="Пароль"
+                  value={password}
+                  onChangeText={(text) => setPassword(text)}
+                  secureTextEntry={!showPassword}
+                />
+                <TouchableOpacity
+                  onPress={() => setShowPassword(!showPassword)}
+                  style={styles.showPasswordButton}
+                >
+                  <Text style={styles.showPasswordText}>
+                    {showPassword ? "Сховати" : "Показати"}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </KeyboardAvoidingView>
+            {!keyboardOpen && (
+              <>
+                <TouchableOpacity
+                  style={styles.registerButton}
+                  onPress={handleRegistration}
+                >
+                  <Text style={styles.registerButtonText}>Зареєструватись</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.loginLink}>
+                  <Text style={styles.loginLinkText}>Вже є акаунт? Увійти</Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        </ImageBackground>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -136,7 +157,7 @@ const styles = StyleSheet.create({
     position: "relative",
     flex: 1,
     width: "100%",
-    maxHeight: 549,
+    // maxHeight: 549,
     // height: "68%",
 
     justifyContent: "center",

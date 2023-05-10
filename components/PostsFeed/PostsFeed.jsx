@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
 import MapPin from "../Icons/MapPin/MapPin";
 import Comments from "../Icons/Comments/Comments";
 
@@ -55,7 +55,7 @@ export default function PostsFeed() {
   );
 }
 
-const styles = {
+const styles = StyleSheet.create({
   postWrapper: {
     flex: 1,
     width: "100%",
@@ -119,4 +119,4 @@ const styles = {
     color: "#212121",
     textDecorationLine: "underline",
   },
-};
+});
