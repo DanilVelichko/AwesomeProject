@@ -13,7 +13,7 @@ import {
 import BackgroundImage from "../../components/Images/Background/Background";
 
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation}) {
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -58,7 +58,12 @@ useEffect(() => {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <BackgroundImage>
-          <View style={{ ...styles.formContainer, maxHeight: keyboardOpen ? 248 : 489 }}>
+          <View
+            style={{
+              ...styles.formContainer,
+              maxHeight: keyboardOpen ? 248 : 489,
+            }}
+          >
             <Text style={styles.title}>Увійти</Text>
 
             <TextInput
@@ -89,12 +94,16 @@ useEffect(() => {
               <>
                 <TouchableOpacity
                   style={styles.loginButton}
-                  onPress={handleLogin}
+                  // onPress={handleLogin}
+                  onPress={() => navigation.navigate("Home")}
                 >
                   <Text style={styles.loginButtonText}>Увійти</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.registerLink}>
+                <TouchableOpacity
+                  style={styles.registerLink}
+                  onPress={() => navigation.navigate("Registration")}
+                >
                   <Text style={styles.registerLinkText}>
                     Немає акаунта? Зареєструватись
                   </Text>

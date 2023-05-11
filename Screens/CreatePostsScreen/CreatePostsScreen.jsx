@@ -15,7 +15,11 @@ import TrashButton from "../../components/Buttons/TrashButton/TrashButton";
 import ContentBlock from "./../../components/Images/ContentBlock/ContentBlock";
 import MapPin from "../../components/Icons/MapPin/MapPin";
 
-export default function CreatePostsScreen() {
+export default function CreatePostsScreen({ navigation, route }) {
+  // const { name } = route;
+  // const [routeName, setRouteName] = useState(name);
+  
+  // console.log("CreatePostsScreen", name);
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [keyboardOpen, setKeyboardOpen] = useState(false);
@@ -58,6 +62,7 @@ export default function CreatePostsScreen() {
         <TouchableOpacity
           onPress={() => {
             console.log("На left arrow клікнуто");
+            navigation.goBack();
           }}
         >
           <BackButton style={styles.backButton} />
@@ -145,6 +150,7 @@ export default function CreatePostsScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 30,
     flex: 1,
     width: "100%",
     height: "100%",

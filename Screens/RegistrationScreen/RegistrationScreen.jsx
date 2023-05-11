@@ -13,9 +13,8 @@ import {
 } from "react-native";
 import AddButton from "../../components/Buttons/AddButton/AddButton";
 
+export default function RegistrationScreen({ navigation }) {
 
-export default function RegistrationScreen() {
-  
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -70,7 +69,12 @@ export default function RegistrationScreen() {
           source={require("../../assets/background.png")}
           style={styles.backgroundImage}
         >
-          <View style={{...styles.formContainer, maxHeight: keyboardOpen ? 374 : 549}}>
+          <View
+            style={{
+              ...styles.formContainer,
+              maxHeight: keyboardOpen ? 374 : 549,
+            }}
+          >
             <View style={styles.avatarContainer}>
               <Image
                 source={require("../../assets/avatar.png")}
@@ -122,11 +126,15 @@ export default function RegistrationScreen() {
               <>
                 <TouchableOpacity
                   style={styles.registerButton}
-                  onPress={handleRegistration}
+                  // onPress={handleRegistration}
+                  onPress={() => navigation.navigate("Home")}
                 >
                   <Text style={styles.registerButtonText}>Зареєструватись</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.loginLink}>
+                <TouchableOpacity
+                  style={styles.loginLink}
+                  onPress={() => navigation.navigate("Login")}
+                >
                   <Text style={styles.loginLinkText}>Вже є акаунт? Увійти</Text>
                 </TouchableOpacity>
               </>
@@ -152,6 +160,7 @@ const styles = StyleSheet.create({
     height: "100%",
     resizeMode: "cover",
     justifyContent: "flex-end",
+    
   },
   formContainer: {
     position: "relative",

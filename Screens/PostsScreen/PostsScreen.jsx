@@ -12,14 +12,17 @@ const userData = {
   avatar: require("../../assets/avatarExample.png"),
 };
 
-function PostsScreen() {
+function PostsScreen({ navigation }) {
   const { name, email, avatar } = userData;
   return (
     <View style={styles.container}>
       <View style={styles.headerWrapper}>
         <Text style={styles.headerText}>Публікації</Text>
         <TouchableOpacity>
-          <LogOutButton style={styles.ExitButton} />
+          <LogOutButton
+            style={styles.ExitButton}
+            onPress={() => navigation.goBack()}
+          />
         </TouchableOpacity>
       </View>
 
@@ -32,20 +35,20 @@ function PostsScreen() {
             <Text style={styles.emailText}>{email}</Text>
           </View>
         </View>
-        <PostsFeed /> 
+        <PostsFeed />
       </View>
-
+{/* 
       <View style={styles.navigationWrapper}>
         <TouchableOpacity>
           <MenuButton style={[styles.homeButton]} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("CreatePosts")}>
           <AddPostButton style={[styles.addPostButton]} />
         </TouchableOpacity>
         <TouchableOpacity>
           <UserButton style={[styles.profileButton]} />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -54,9 +57,9 @@ export default PostsScreen;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 30,
     flex: 1,
-    width: "100%",
-    height: "100%",
+ 
     flexDirection: "column",
     backgroundColor: "#E5E5E5",
   },

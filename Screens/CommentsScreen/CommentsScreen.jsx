@@ -58,6 +58,7 @@ export default function CommentsScreen() {
         <TouchableOpacity
           onPress={() => {
             console.log("На left arrow клікнуто");
+            navigation.goBack();
           }}
         >
           <BackButton style={styles.backButton} />
